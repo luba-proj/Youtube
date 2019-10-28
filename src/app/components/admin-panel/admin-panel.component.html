@@ -1,0 +1,63 @@
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<!-- <div class="container"> -->
+    <div class="row">
+        <div class='col-md-4 userList'>
+            <h2 class='h2'>Users</h2>
+            <ul class="users">
+              <li *ngFor="let user of users"
+                (click)="onSelect(user)">
+                <span class="badge"></span><a class='a-text'>{{user.lastName}} {{user.name}}</a> 
+              </li>
+            </ul>
+        </div> <!--class col-md-4 userList-->
+       
+        <div class='col-md-4 userSearchHistory'>
+            <div *ngIf="selectedUser">
+                <h2>{{selectedUser.name | uppercase}} Search History </h2>
+                <div class='table'>
+                  <table mdbTable class = 'table-condensed table-hover table-striped'>
+                    <thead>
+                      <tr>
+                        <th class='thHeader' *ngFor="let headSearch of headElementsSearchHistory" scope="col">{{headSearch}} </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class = 'info' mdbTableCol *ngFor="let searchHistory of searchHistoryList">
+                        <td>{{searchHistory.searchTerm}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!--class table-->
+              </div> <!--ngIf-->
+        </div><!--class col-md-8 userSearchHistory-->
+
+        <div class='col-md-4 userWatchedHistory'>
+            <div *ngIf="selectedUser">
+                <h2>{{selectedUser.name | uppercase}} Watched History </h2>
+                <div class='table'>
+                  <table mdbTable class = 'table-condensed table-hover table-striped'>
+                    <thead>
+                      <tr>
+                        <th *ngFor="let headWatch of headElementswatchHistory" scope="col">{{headWatch}} </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class = 'info' mdbTableCol *ngFor="let watchHistory of watchHistoryList">
+                        <td>{{watchHistory.videoURL}}</td>
+                        <td>{{watchHistory.durationString}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div> <!--class table-->
+              </div> <!--ngIf-->
+        </div><!--class col-md-8 userWatchedHistory-->
+
+        
+    </div> <!--class  row -->
+<!-- </div>  class  container -->

@@ -1,0 +1,89 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+  <div class="container">
+      <div class="row">
+          <div class='col-md-12'><h2 align="center" style="margin-top: 20px;">Search Youtube</h2></div>
+      </div>
+      <div class="row">
+          <div class='col-md-12 search-bar'>
+              <form class="form-inline active-cyan-4">
+                  <input class="form-control form-control-sm mr-3 w-75 input-search" type="text" 
+                    placeholder="Search"  [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}"
+                    aria-label="Search">
+                  <i class="fas fa-search" (click)=serchTerm()></i>
+                </form>
+          </div>
+      </div>
+    <div class="row">
+        <div class="col-md-4 pull-right overflow" >
+                <ul >
+                   <li class='video' *ngFor="let video of videos" (click)=getVideo(video)>
+                    <div class="video-list media">
+                      <div class="media-left">
+                        <img class="media-object" src="{{video.snippet.thumbnails.default.url}}" />
+                      </div>
+                      <div class="media-body">
+                        <div style="margin-left: 8px;" class="media-heading">{{video.snippet.title}}</div>
+                      </div>
+                    </div>
+                  </li>            
+                </ul>
+        </div>
+        <div class="col-md-8 video-detail" >
+            <youtube-player
+            [videoId]="id"
+            (ready)="savePlayer($event)"
+            (change)="onStateChange($event)"
+            [playerVars]="playerVars">
+          </youtube-player>
+        </div>
+    </div>
+   
+
+   
+  </div>
+
+
+ 
+<!-- 
+  <div class="container">
+    <div><h2 align="center" style="margin-top: 20px;">Search Youtube</h2></div>
+    <div class='search-bar'>
+      <input type="text" name="search" placeholder="Search"class="search-bar form-control"  />
+    </div>
+    <div class="row">
+        <div class="col-md-8 video-detail">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" allowFullScreen='allowFullScreen' src="{{youtubeUrl}}"></iframe>
+          </div>
+          <div class="details">
+            <strong>Title</strong>
+            <div>{{videoDetails.title}}</div>
+            <hr>
+            <strong>Description</strong>
+            <div>{{videoDetails.description}}</div>
+          </div>  
+        </div>
+        <div class="col-md-4 pull-right overflow">
+            <div ng-repeat="video in videos">
+              <ul class="list-group">
+                <li class="list-group-item " ng-click="getVideo(video)">
+                  <div class="video-list media">
+                    <div class="media-left">
+                      <img class="media-object" src="{{video.snippet.thumbnails.default.url}}" />
+                    </div>
+                    <div class="media-body">
+                      <div style="margin-left: 8px;" class="media-heading">{{video.snippet.title}}</div>
+                    </div>
+                  </div>
+                </li>            
+              </ul>
+            </div>          
+        </div>     
+    </div>    
+  </div>  -->
